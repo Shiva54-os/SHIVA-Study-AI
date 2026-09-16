@@ -31,13 +31,13 @@ async function generateStudyContent() {
 
     const request = studyInput.value.trim();
 
-    // Check empty input
     if (request === "") {
 
         resultSection.classList.remove("hidden");
 
         result.innerHTML = `
             <h2>⚠️ Enter a topic first</h2>
+
             <p>
                 Please enter a chapter or topic,
                 for example:
@@ -48,23 +48,25 @@ async function generateStudyContent() {
         return;
     }
 
-    // Loading message
+
+    // Show loading
     resultSection.classList.remove("hidden");
 
     result.innerHTML = `
         <h2>⚡ Preparing your study content...</h2>
+
         <p>
             Your request:
             <b>${request}</b>
         </p>
     `;
 
-    // Connect to AI backend
+
     await connectToAI(request);
 }
 
 
-// Connect to backend
+// Connect to AI backend
 async function connectToAI(request) {
 
     try {
@@ -96,6 +98,7 @@ async function connectToAI(request) {
         }
 
 
+        // Display actual AI answer
         result.innerHTML = `
             <h2>🤖 Study AI</h2>
 
@@ -104,13 +107,9 @@ async function connectToAI(request) {
                 ${data.question}
             </p>
 
-            <p>
-                ✅ Backend connected successfully!
-            </p>
-
-            <p>
-                AI generation will be added next.
-            </p>
+            <div class="ai-answer">
+                ${formatAnswer(data.answer)}
+            </div>
         `;
 
 
@@ -125,4 +124,24 @@ async function connectToAI(request) {
         `;
 
     }
+}
+
+
+// Format AI response
+function formatAnswer(answer) {
+
+    if (!answer) {
+
+        return `
+            <p>
+                ❌ AI did not return an answer.
+            </p>
+        `;
+
+    }
+
+    return answer
+        .replace(/\n\n/g, "<br><br>")
+        .replace(/\n/g, "<br>");
+
 }
