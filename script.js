@@ -69,7 +69,7 @@ async function connectToAI(request) {
 
     try {
 
-        const response = await fetch("/api/index.js", {
+        const response = await fetch("/api", {
 
             method: "POST",
 
