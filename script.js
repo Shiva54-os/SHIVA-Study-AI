@@ -1,7 +1,5 @@
-```javascript
-// ==========================================
-// STUDY AI — MAIN FRONTEND
-// ==========================================
+// SHIVA Study AI
+// Frontend JavaScript
 
 const studyInput = document.getElementById("studyInput");
 const generateBtn = document.getElementById("generateBtn");
@@ -10,260 +8,140 @@ const resultSection = document.getElementById("resultSection");
 const result = document.getElementById("result");
 
 
-// ==========================================
-// QUICK STUDY BUTTONS
-// ==========================================
-
+// Quick Study buttons
 function setRequest(type) {
 
-    const currentText = studyInput.value.trim();
+    const currentText = studyInput.value.trim();
 
-    if (currentText === "") {
+    if (currentText === "") {
+        studyInput.value = type;
+    } else {
+        studyInput.value = currentText + " - " + type;
+    }
 
-        studyInput.value = type;
-
-    } else {
-
-        studyInput.value =
-            currentText + " - " + type;
-
-    }
-
-    studyInput.focus();
+    studyInput.focus();
 }
 
 
-// ==========================================
-// GENERATE BUTTON
-// ==========================================
-
-generateBtn.addEventListener(
-    "click",
-    generateStudyContent
-);
+// Generate button
+generateBtn.addEventListener("click", generateStudyContent);
 
 
 async function generateStudyContent() {
 
-    const request =
-        studyInput.value.trim();
+    const request = studyInput.value.trim();
+
+    if (request === "") {
+
+        resultSection.classList.remove("hidden");
+
+        result.innerHTML = `
+            <h2>⚠️ Enter a topic first</h2>
+
+            <p>
+                Please enter a chapter or topic,
+                for example:
+                <b>Nationalism in India - MCQs</b>
+            </p>
+        `;
+
+        return;
+    }
 
 
-    if (request === "") {
+    // Show loading
+    resultSection.classList.remove("hidden");
 
-        resultSection.classList.remove("hidden");
+    result.innerHTML = `
+        <h2>⚡ Preparing your study content...</h2>
 
-        result.innerHTML = `
-            <div class="result-card">
-
-                <h2>⚠️ Enter a topic first</h2>
-
-                <p>
-                    Please enter a chapter or topic,
-                    for example:
-                    <b>Nationalism in India - MCQs</b>
-                </p>
-
-            </div>
-        `;
-
-        return;
-    }
+        <p>
+            Your request:
+            <b>${request}</b>
+        </p>
+    `;
 
 
-    // Show loading
-
-    resultSection.classList.remove("hidden");
-
-    result.innerHTML = `
-        <div class="result-card">
-
-            <h2>⚡ Preparing your study content...</h2>
-
-            <p>
-                Your request:
-                <b>${escapeHTML(request)}</b>
-            </p>
-
-        </div>
-    `;
-
-
-    await connectToAI(request);
+    await connectToAI(request);
 }
 
 
-// ==========================================
-// CONNECT TO AI
-// ==========================================
-
+// Connect to AI backend
 async function connectToAI(request) {
 
-    try {
+    try {
 
-        const response =
-            await fetch("/api", {
+        const response = await fetch("/api", {
 
-                method: "POST",
+            method: "POST",
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
+            headers: {
+                "Content-Type": "application/json"
+            },
 
-                body: JSON.stringify({
+            body: JSON.stringify({
+                question: request
+            })
 
-                    question: request
-
-                })
-
-            });
+        });
 
 
-        const data =
-            await response.json();
+        const data = await response.json();
 
 
-        if (!response.ok) {
+        if (!response.ok) {
 
-            throw new Error(
-                data.error ||
-                "Something went wrong."
-            );
+            throw new Error(
+                data.error || "Something went wrong."
+            );
 
-        }
-
-
-        // Display AI answer
-
-        result.innerHTML = `
-            <div class="result-card">
-
-                <h2>🤖 Study AI</h2>
-
-                <p>
-                    <b>Your request:</b>
-                    ${escapeHTML(data.question)}
-                </p>
-
-                <div class="ai-answer">
-
-                    ${formatAnswer(data.answer)}
-
-                </div>
-
-            </div>
-        `;
+        }
 
 
-    } catch (error) {
+        // Display actual AI answer
+        result.innerHTML = `
+            <h2>🤖 Study AI</h2>
 
-        result.innerHTML = `
-            <div class="result-card">
+            <p>
+                <b>Your request:</b>
+                ${data.question}
+            </p>
 
-                <h2>❌ Error</h2>
+            <div class="ai-answer">
+                ${formatAnswer(data.answer)}
+            </div>
+        `;
 
-                <p>
-                    ${escapeHTML(error.message)}
-                </p>
 
-            </div>
-        `;
+    } catch (error) {
 
-    }
+        result.innerHTML = `
+            <h2>❌ Error</h2>
 
+            <p>
+                ${error.message}
+            </p>
+        `;
+
+    }
 }
 
 
-// ==========================================
-// FORMAT AI ANSWER
-// ==========================================
-
+// Format AI response
 function formatAnswer(answer) {
 
-    if (!answer) {
+    if (!answer) {
 
-        return `
-            <p>
-                ❌ AI did not return an answer.
-            </p>
-        `;
+        return `
+            <p>
+                ❌ AI did not return an answer.
+            </p>
+        `;
 
-    }
+    }
 
-
-    return escapeHTML(answer)
-        .replace(/\n\n/g, "<br><br>")
-        .replace(/\n/g, "<br>");
-
-}
-
-
-// ==========================================
-// SAFE HTML
-// ==========================================
-
-function escapeHTML(value) {
-
-    if (value === null ||
-        value === undefined) {
-
-        return "";
-
-    }
-
-
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+    return answer
+        .replace(/\n\n/g, "<br><br>")
+        .replace(/\n/g, "<br>");
 
 }
-
-
-// ==========================================
-// PRACTICE MODE
-// ==========================================
-//
-// Practice functions are kept separate from
-// the normal Study AI system.
-// They will be connected after the main
-// Study AI is confirmed working.
-// ==========================================
-
-const startPracticeBtn =
-    document.getElementById("startPracticeBtn");
-
-const practiceChapter =
-    document.getElementById("practiceChapter");
-
-const practicePanel =
-    document.getElementById("practicePanel");
-
-
-// Open Practice section
-
-function openPractice() {
-
-    if (!practicePanel) {
-        return;
-    }
-
-    practicePanel.classList.remove("hidden");
-
-    practicePanel.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
-
-}
-
-
-// Start Practice button is intentionally
-// not connected yet.
-//
-// First we restore the original Study AI
-// system completely. Then Practice will be
-// connected safely without breaking it.
-```
