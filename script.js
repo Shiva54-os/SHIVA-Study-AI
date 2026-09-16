@@ -53,7 +53,7 @@ function generateStudyContent() {
 
         return;
     }
-
+connectToAI(request);
 
     // Loading message
     resultSection.classList.remove("hidden");
@@ -119,7 +119,59 @@ async function connectToAI(request) {
 
         result.innerHTML = `
             <h2>❌ Error</h2>
+async function connectToAI(request) {
 
+    try {
+
+        const response = await fetch("/api/index.js", {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                question: request
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                data.error || "Something went wrong."
+            );
+        }
+
+        result.innerHTML = `
+            <h2>🤖 Study AI</h2>
+
+            <p>
+                <b>Your request:</b>
+                ${data.question}
+            </p>
+
+            <p>
+                ✅ Backend connected successfully!
+            </p>
+
+            <p>
+                AI generation will be added next.
+            </p>
+        `;
+
+    } catch (error) {
+
+        result.innerHTML = `
+            <h2>❌ Error</h2>
+
+            <p>
+                ${error.message}
+            </p>
+        `;
+
+    }
+            }
             <p>
                 ${error.message}
             </p>
