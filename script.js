@@ -67,25 +67,64 @@ function generateStudyContent() {
     `;
 
 
-    // Temporary response
-    setTimeout(() => {
+// Connect to backend
+async function connectToAI(request) {
+
+    try {
+
+        const response = await fetch("/api/index.js", {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                question: request
+            })
+        });
+
+
+        const data = await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error || "Something went wrong."
+            );
+
+        }
+
 
         result.innerHTML = `
-            <h2>📚 Study AI</h2>
+            <h2>🤖 Study AI</h2>
 
             <p>
-                Your request has been received successfully.
+                <b>Your request:</b>
+                ${data.question}
             </p>
 
             <p>
-                <b>Topic:</b> ${request}
+                ✅ Backend connected successfully!
             </p>
 
             <p>
-                🤖 AI generation will be connected in the next step.
+                AI generation will be added next.
             </p>
         `;
 
-    }, 1000);
+
+    } catch (error) {
+
+        result.innerHTML = `
+            <h2>❌ Error</h2>
+
+            <p>
+                ${error.message}
+            </p>
+        `;
+
+    }
 
 }
