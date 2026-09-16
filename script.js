@@ -1,5 +1,11 @@
+```javascript
 // SHIVA Study AI
 // Frontend JavaScript
+
+
+// ================================
+// NORMAL STUDY AI
+// ================================
 
 const studyInput = document.getElementById("studyInput");
 const generateBtn = document.getElementById("generateBtn");
@@ -36,13 +42,17 @@ async function generateStudyContent() {
         resultSection.classList.remove("hidden");
 
         result.innerHTML = `
-            <h2>⚠️ Enter a topic first</h2>
+            <div class="result-card">
 
-            <p>
-                Please enter a chapter or topic,
-                for example:
-                <b>Nationalism in India - MCQs</b>
-            </p>
+                <h2>⚠️ Enter a topic first</h2>
+
+                <p>
+                    Please enter a chapter or topic,
+                    for example:
+                    <b>Nationalism in India - MCQs</b>
+                </p>
+
+            </div>
         `;
 
         return;
@@ -53,12 +63,16 @@ async function generateStudyContent() {
     resultSection.classList.remove("hidden");
 
     result.innerHTML = `
-        <h2>⚡ Preparing your study content...</h2>
+        <div class="result-card">
 
-        <p>
-            Your request:
-            <b>${request}</b>
-        </p>
+            <h2>⚡ Preparing your study content...</h2>
+
+            <p>
+                Your request:
+                <b>${escapeHTML(request)}</b>
+            </p>
+
+        </div>
     `;
 
 
@@ -66,7 +80,7 @@ async function generateStudyContent() {
 }
 
 
-// Connect to AI backend
+// Connect to normal AI backend
 async function connectToAI(request) {
 
     try {
@@ -100,48 +114,15 @@ async function connectToAI(request) {
 
         // Display actual AI answer
         result.innerHTML = `
-            <h2>🤖 Study AI</h2>
+            <div class="result-card">
 
-            <p>
-                <b>Your request:</b>
-                ${data.question}
-            </p>
+                <h2>🤖 Study AI</h2>
 
-            <div class="ai-answer">
-                ${formatAnswer(data.answer)}
-            </div>
-        `;
+                <p>
+                    <b>Your request:</b>
+                    ${escapeHTML(data.question)}
+                </p>
 
-
-    } catch (error) {
-
-        result.innerHTML = `
-            <h2>❌ Error</h2>
-
-            <p>
-                ${error.message}
-            </p>
-        `;
-
-    }
-}
-
-
-// Format AI response
-function formatAnswer(answer) {
-
-    if (!answer) {
-
-        return `
-            <p>
-                ❌ AI did not return an answer.
-            </p>
-        `;
-
-    }
-
-    return answer
-        .replace(/\n\n/g, "<br><br>")
-        .replace(/\n/g, "<br>");
-
-}
+                <div class="ai-answer">
+                    ${formatAnswer(data.answer)}
+```
