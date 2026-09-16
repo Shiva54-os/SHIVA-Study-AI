@@ -1,210 +1,208 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-    <meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>Study AI | CBSE Class 10</title>
+    <title>Study AI | CBSE Class 10</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-    <header class="header">
+    <header class="header">
 
-        <div class="logo">
-            STUDY<span>AI</span>
-        </div>
+        <div class="logo">
+            STUDY<span>AI</span>
+        </div>
 
-        <div class="class-badge">
-            CBSE • CLASS 10
-        </div>
+        <div class="class-badge">
+            CBSE • CLASS 10
+        </div>
 
-    </header>
+    </header>
 
 
-    <main class="container">
+    <main class="container">
 
 
-        <section class="hero">
+        <section class="hero">
 
-            <div class="hero-badge">
-                PERSONAL STUDY ASSISTANT
-            </div>
+            <div class="hero-badge">
+                PERSONAL STUDY ASSISTANT
+            </div>
 
-            <h1>
-                Study Smarter.<br>
-                <span>Prepare Better.</span>
-            </h1>
+            <h1>
+                Study Smarter.<br>
+                <span>Prepare Better.</span>
+            </h1>
 
-            <p>
-                Your personal AI study assistant for
-                CBSE Class 10 exam preparation.
-            </p>
+            <p>
+                Your personal AI study assistant for
+                CBSE Class 10 exam preparation.
+            </p>
 
-        </section>
+        </section>
 
 
-        <section class="generator-card">
+        <section class="generator-card">
 
-            <label for="studyInput">
-                What do you want to study?
-            </label>
+            <label for="studyInput">
+                What do you want to study?
+            </label>
 
-            <textarea
-                id="studyInput"
-                placeholder="Example: Nationalism in India (MCQs)"
-            ></textarea>
+            <textarea
+                id="studyInput"
+                placeholder="Example: Nationalism in India (MCQs)"
+            ></textarea>
 
-            <button
-                id="generateBtn"
-                class="generate-btn">
+            <button
+                id="generateBtn"
+                class="generate-btn">
 
-                ⚡ GENERATE
+                ⚡ GENERATE
 
-            </button>
+            </button>
 
-            <p class="input-help">
-                Example:
-                <b>Light – Reflection and Refraction (MCQs)</b>
-            </p>
+            <p class="input-help">
+                Example:
+                <b>Light – Reflection and Refraction (MCQs)</b>
+            </p>
 
-        </section>
+        </section>
 
 
-        <section class="quick-section">
+        <section class="quick-section">
 
-            <div class="section-heading">
+            <div class="section-heading">
 
-                <h2>Quick Study</h2>
+                <h2>Quick Study</h2>
 
-                <p>
-                    Choose what you want from your chapter.
-                </p>
+                <p>
+                    Choose what you want from your chapter.
+                </p>
 
-            </div>
+            </div>
 
 
-            <div class="quick-grid">
+            <div class="quick-grid">
 
-                <button onclick="setRequest('MCQs')">
-                    <span>🎯</span>
-                    MCQs
-                </button>
+                <button onclick="setRequest('MCQs')">
+                    <span>🎯</span>
+                    MCQs
+                </button>
 
-                <button onclick="setRequest('Fill Ups')">
-                    <span>📝</span>
-                    Fill Ups
-                </button>
+                <button onclick="setRequest('Fill Ups')">
+                    <span>📝</span>
+                    Fill Ups
+                </button>
 
-                <button onclick="setRequest('One Word')">
-                    <span>🔤</span>
-                    One Word
-                </button>
+                <button onclick="setRequest('One Word')">
+                    <span>🔤</span>
+                    One Word
+                </button>
 
-                <button onclick="setRequest('Very Short Questions')">
-                    <span>⚡</span>
-                    Very Short
-                </button>
+                <button onclick="setRequest('Very Short Questions')">
+                    <span>⚡</span>
+                    Very Short
+                </button>
 
-                <button onclick="setRequest('Short Questions')">
-                    <span>📖</span>
-                    Short Questions
-                </button>
+                <button onclick="setRequest('Short Questions')">
+                    <span>📖</span>
+                    Short Questions
+                </button>
 
-                <button onclick="setRequest('Long Questions')">
-                    <span>📚</span>
-                    Long Questions
-                </button>
+                <button onclick="setRequest('Long Questions')">
+                    <span>📚</span>
+                    Long Questions
+                </button>
 
-                <button onclick="setRequest('Notes')">
-                    <span>📒</span>
-                    Notes
-                </button>
+                <button onclick="setRequest('Notes')">
+                    <span>📒</span>
+                    Notes
+                </button>
 
-                <button onclick="setRequest('Key Points')">
-                    <span>💡</span>
-                    Key Points
-                </button>
+                <button onclick="setRequest('Key Points')">
+                    <span>💡</span>
+                    Key Points
+                </button>
 
-                <button onclick="setRequest('Summary')">
-                    <span>📋</span>
-                    Summary
-                </button>
+                <button onclick="setRequest('Summary')">
+                    <span>📋</span>
+                    Summary
+                </button>
 
-                <button onclick="setRequest('Explain')">
-                    <span>🧠</span>
-                    Explain
-                </button>
+                <button onclick="setRequest('Explain')">
+                    <span>🧠</span>
+                    Explain
+                </button>
 
-            </div>
+            </div>
 
-        </section>
+        </section>
 
 
-        <section class="exam-section">
+        <section class="exam-section">
 
-            <div class="exam-icon">
-                📝
-            </div>
+            <div class="exam-icon">
+                📝
+            </div>
 
-            <div class="exam-content">
+            <div class="exam-content">
 
-                <h2>Exam Mode</h2>
+                <h2>Exam Mode</h2>
 
-                <p>
-                    Generate a complete exam-style
-                    practice paper for your chapter.
-                </p>
+                <p>
+                    Generate a complete exam-style
+                    practice paper for your chapter.
+                </p>
 
-            </div>
+            </div>
 
-            <button
-                class="exam-btn"
-                onclick="setRequest('Exam Mode')">
+            <button
+                class="exam-btn"
+                onclick="setRequest('Exam Mode')">
 
-                START EXAM
+                START EXAM
 
-            </button>
+            </button>
 
-        </section>
+        </section>
 
 
-        <section
-            id="resultSection"
-            class="result-section hidden">
+        <section
+            id="resultSection"
+            class="result-section hidden">
 
-            <div id="result"></div>
+            <div id="result"></div>
 
-        </section>
+        </section>
 
 
-    </main>
+    </main>
 
 
-    <footer>
+    <footer>
 
-        <p>
-            STUDYAI • CBSE CLASS 10
-        </p>
+        <p>
+            STUDYAI • CBSE CLASS 10
+        </p>
 
-        <span>
-            Personal Study Tool
-        </span>
+        <span>
+            Personal Study Tool
+        </span>
 
-    </footer>
+    </footer>
 
 
-    <script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 
 </html>
-```
