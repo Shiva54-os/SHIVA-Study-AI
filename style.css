@@ -1,3 +1,4 @@
+```css
 * {
     margin: 0;
     padding: 0;
@@ -11,8 +12,6 @@ body {
     color: #ffffff;
     min-height: 100vh;
 }
-
-/* HEADER */
 
 .header {
     width: 100%;
@@ -45,17 +44,11 @@ body {
     font-weight: bold;
 }
 
-
-/* MAIN */
-
 .container {
     width: 92%;
     max-width: 850px;
     margin: auto;
 }
-
-
-/* HERO */
 
 .hero {
     text-align: center;
@@ -91,9 +84,6 @@ body {
     font-size: 16px;
     line-height: 1.6;
 }
-
-
-/* GENERATOR */
 
 .generator-card {
     padding: 25px;
@@ -154,9 +144,6 @@ textarea:focus {
     font-size: 11px;
 }
 
-
-/* QUICK STUDY */
-
 .quick-section {
     margin-top: 42px;
 }
@@ -205,39 +192,41 @@ textarea:focus {
 }
 
 
-/* EXAM MODE */
+/* =========================
+   PRACTICE SECTION
+========================= */
 
-.exam-section {
+.practice-section {
     margin-top: 35px;
     padding: 22px;
     display: flex;
     align-items: center;
     gap: 17px;
     border-radius: 18px;
-    border: 1px solid #302d43;
+    border: 1px solid #39314f;
     background: linear-gradient(135deg, #171522, #111219);
 }
 
-.exam-icon {
+.practice-icon {
     font-size: 28px;
 }
 
-.exam-content {
+.practice-content {
     flex: 1;
 }
 
-.exam-content h2 {
+.practice-content h2 {
     font-size: 19px;
     margin-bottom: 5px;
 }
 
-.exam-content p {
+.practice-content p {
     color: #838694;
     font-size: 12px;
     line-height: 1.5;
 }
 
-.exam-btn {
+.practice-btn {
     padding: 12px 17px;
     border: 1px solid #4d407e;
     border-radius: 10px;
@@ -245,87 +234,11 @@ textarea:focus {
     color: white;
     font-weight: bold;
     cursor: pointer;
+    transition: 0.2s;
 }
 
-
-/* RESULT */
-
-.result-section {
-    margin-top: 35px;
-    margin-bottom: 50px;
-}
-
-.result-card {
-    padding: 25px;
-    border-radius: 18px;
-    background: #14161e;
-    border: 1px solid #2b2e39;
-}
-
-.result-card p {
-    color: #999ca8;
-    line-height: 1.6;
-}
-
-.hidden {
-    display: none;
-}
-
-
-/* FOOTER */
-
-footer {
-    padding: 35px 10px;
-    text-align: center;
-    border-top: 1px solid #1e2028;
-    color: #676a75;
-    font-size: 11px;
-    line-height: 1.8;
-}
-
-footer span {
-    color: #444751;
-}
-
-
-/* MOBILE */
-
-@media (max-width: 600px) {
-
-    .header {
-        padding: 15px 4%;
-    }
-
-    .hero {
-        padding-top: 45px;
-    }
-
-    .hero h1 {
-        font-size: 35px;
-    }
-
-    .hero p {
-        font-size: 14px;
-    }
-
-    .generator-card {
-        padding: 18px;
-    }
-
-    .quick-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .exam-section {
-        align-items: flex-start;
-        flex-wrap: wrap;
-    }
-
-    .exam-content {
-        min-width: 70%;
-    }
-
-    .exam-btn {
-        width: 100%;
-    }
-  }
+.practice-btn:hover {
+    background: #917aff;
+    transform: translateY(-1
+```
+                          
